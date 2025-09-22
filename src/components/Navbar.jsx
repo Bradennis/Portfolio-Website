@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { FiMail, FiPhone } from "react-icons/fi";
+import profPic from "../assets/prof.jpg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
             }}
           >
             <img
-              src='/src/assets/prof.jpg'
+              src={profPic}
               alt='Profile'
               className='navbar-avatar'
               style={{ width: "52px", height: "52px", borderRadius: "50%" }}

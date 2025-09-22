@@ -18,6 +18,7 @@ import {
 import "../styles/Home.css";
 import Portfolio from "../components/Portfolio";
 import ResumeSection from "../components/ResumeSection";
+import aboutImage from '../assets/suit1.png';
 
 const useIsMobile = (breakpoint = 900) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
@@ -155,7 +156,7 @@ const Home = () => {
           <div className='hero-right'>
             <div className='hero-card-bg'>
               <img
-                src='/src/assets/suit1.png'
+                src={aboutImage}
                 alt='Profile'
                 className='hero-profile-img'
               />
