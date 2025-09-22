@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { FiDownload } from "react-icons/fi";
+import { MdMemory, MdBrush, MdDesignServices, MdDevices } from "react-icons/md";
+import { motion } from "framer-motion";
+import {
+  FaLaptopCode,
+  FaMobileAlt,
+  FaBrain,
+  FaPaintBrush,
+} from "react-icons/fa";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaFacebook,
+  FaInstagram,
+  FaXTwitter,
+} from "react-icons/fa6";
 import "../styles/Home.css";
-
-// Add Font Awesome CDN for icons
-const fontAwesomeLink = document.createElement("link");
-fontAwesomeLink.rel = "stylesheet";
-fontAwesomeLink.href =
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
-document.head.appendChild(fontAwesomeLink);
+import Portfolio from "../components/Portfolio";
+import ResumeSection from "../components/ResumeSection";
 
 const useIsMobile = (breakpoint = 900) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
@@ -18,6 +29,42 @@ const useIsMobile = (breakpoint = 900) => {
   return isMobile;
 };
 
+const skills = [
+  {
+    icon: <FaLaptopCode />,
+    title: "Web Development",
+    description:
+      "I build fast, scalable, and responsive websites with modern frameworks and best practices.",
+    color: "linear-gradient(135deg, #3b82f6, #1e40af)", // blue 500 → blue 900
+  },
+  {
+    icon: <FaMobileAlt />,
+    title: "Mobile Development",
+    description:
+      "I create intuitive and high-performance mobile applications for Android and iOS.",
+    color: "linear-gradient(135deg, #38bdf8, #0284c7)", // sky 400 → sky 700
+  },
+  {
+    icon: <FaBrain />,
+    title: "AI & Machine Learning",
+    description:
+      "I develop intelligent solutions using AI and ML to solve real-world problems effectively.",
+    color: "linear-gradient(135deg, #2563eb, #0f172a)", // blue 600 → slate 900
+  },
+  {
+    icon: <FaPaintBrush />,
+    title: "Graphics Design & UI/UX",
+    description:
+      "I design visually appealing interfaces and graphics with a focus on user experience.",
+    color: "linear-gradient(135deg, #60a5fa, #1d4ed8)", // blue 400 → blue 700
+  },
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+};
+
 const Home = () => {
   const isMobile = useIsMobile();
 
@@ -26,68 +73,84 @@ const Home = () => {
       {/* Hero Section */}
       <section className='hero'>
         <div className='hero-left'>
-          <div className='hero-welcome'>WELCOME TO MY WORLD</div>
+          <div className='hero-welcome'>ABOUT ME</div>
           <h1 className='hero-title'>
             Hi, I’m <span className='hero-name'>Dennis Akplehey Agyemang</span>
             <br />
             <span className='hero-role'>
-              Web & Mobile Developer | AI/ML Engineer | Graphics & UI/UX
-              Designer
+              Web & Mobile Developer | AI/ML Engineer
             </span>
           </h1>
-          {isMobile && (
-            <div className='hero-right hero-right-mobile'>
-              <div className='hero-card-bg'>
-                <img
-                  src='/src/assets/suit1.png'
-                  alt='Profile'
-                  className='hero-profile-img'
-                />
-              </div>
-            </div>
-          )}
+
           <p className='hero-desc'>
-            I build modern web and mobile applications, design beautiful user
-            interfaces, and create intelligent solutions with AI and machine
-            learning. I also craft stunning graphics and deliver seamless user
-            experiences.
+            I’m a creative web & mobile developer with a Computer Science
+            background and a passion for AI and machine learning. I love
+            building sleek, modern apps and smart digital solutions that make
+            life easier and more fun. From full-stack development to intuitive
+            UI/UX, I blend code and creativity to craft experiences that stand
+            out.
           </p>
 
-          <p style={{ marginBottom: "-15px" }}>FIND ME ON:</p>
+          <p className='hero-find'>FIND ME ON:</p>
+
           <div className='hero-socials'>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <a href='#' title='LinkedIn'>
-                <i className='fab fa-linkedin'></i>
+            <div className='hero-social-group'>
+              <a
+                href='https://www.linkedin.com/in/dennis-agyemang-702704232/'
+                title='LinkedIn'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <FaLinkedin />
               </a>
-              <a href='#' title='GitHub'>
-                <i className='fab fa-github'></i>
+              <a
+                href='https://github.com/Bradennis'
+                title='GitHub'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <FaGithub />
               </a>
             </div>
 
-            <div style={{ display: "flex", gap: "1rem" }}>
+            <div className='hero-divider'></div>
+
+            <div className='hero-social-group'>
               <a href='#' title='Facebook'>
-                <i className='fab fa-facebook'></i>
+                <FaFacebook />
               </a>
-              <a href='#' title='X' className='social-x'>
-                <svg
-                  width='20'
-                  height='20'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    d='M17.53 3H21.5L14.42 10.62L22.75 21H16.44L11.38 14.62L5.77 21H1.8L9.22 12.94L1.25 3H7.73L12.36 8.84L17.53 3ZM16.46 19.13H18.29L7.38 4.8H5.44L16.46 19.13Z'
-                    fill='currentColor'
-                  />
-                </svg>
+              <a
+                href='https://x.com/dennisAgye'
+                title='X'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <FaXTwitter />
               </a>
               <a href='#' title='Instagram'>
-                <i className='fab fa-instagram'></i>
+                <FaInstagram />
               </a>
             </div>
           </div>
+
+          <div className='hero-actions'>
+            <a href='/portfolio' className='hero-btn hero-btn-primary'>
+              View My Work
+            </a>
+            <a
+              href='/DENNIS AKPLEHEY AGYEMANG_CV.pdf'
+              className='hero-btn hero-btn-outline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <span className='hero-download'>
+                <FiDownload className='hero-btn-icon' />
+                Download CV
+              </span>
+            </a>
+          </div>
         </div>
+
         {!isMobile && (
           <div className='hero-right'>
             <div className='hero-card-bg'>
@@ -101,117 +164,93 @@ const Home = () => {
         )}
       </section>
 
-      {/* What I Do Section */}
+      {/* Elevator Pitch Section */}
+      <section className='elevator-pitch'>
+        <div className='container'>
+          <motion.h2
+            className='elevator-title'
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            My Elevator Pitch
+          </motion.h2>
+          <motion.p
+            className='elevator-subtitle'
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            A quick introduction about who I am, what I do, and the value I
+            bring.
+          </motion.p>
+
+          <motion.div
+            className='elevator-video-card'
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <div className='video-wrapper'>
+              {/* Replace with your YouTube link or mp4 source */}
+              <iframe
+                src='https://www.youtube.com/embed/dQw4w9WgXcQ'
+                title='Elevator Pitch Video'
+                frameBorder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+              ></iframe>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Me Section (styled after 'Why Choose Us') */}
       <section className='what-i-do'>
-        <h2>What I Do</h2>
-        <div className='cards'>
-          <div className='card'>
-            <div className='card-icon'>📈</div>
-            <div className='card-title'>Business Strategy</div>
-            <div className='card-desc'>
-              I help companies grow and succeed with clear business strategies
-              and tech expertise.
-            </div>
-          </div>
-          <div className='card'>
-            <div className='card-icon'>💻</div>
-            <div className='card-title'>App Development</div>
-            <div className='card-desc'>
-              Building modern web and mobile applications to solve real-world
-              problems.
-            </div>
-          </div>
-          <div className='card'>
-            <div className='card-icon'>📱</div>
-            <div className='card-title'>Mobile Apps</div>
-            <div className='card-desc'>
-              Creating seamless mobile experiences for users and businesses.
-            </div>
-          </div>
-          <div className='card'>
-            <div className='card-icon'>🚀</div>
-            <div className='card-title'>CEO Marketing</div>
-            <div className='card-desc'>
-              Marketing strategies for CEOs and startups to boost their brand
-              and reach.
-            </div>
-          </div>
-          <div className='card'>
-            <div className='card-icon'>🗂️</div>
-            <div className='card-title'>Personal Portfolio App</div>
-            <div className='card-desc'>
-              Showcasing personal work and achievements in a professional
-              portfolio app.
-            </div>
+        <div className='container'>
+          <motion.h2
+            className='what-i-do-title'
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            What I Do
+          </motion.h2>
+
+          <div className='what-i-do-grid'>
+            {skills.map((skill, index) => (
+              <motion.div
+                key={index}
+                className='what-i-do-card'
+                variants={cardVariants}
+                initial='hidden'
+                whileInView='visible'
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div
+                  className='what-i-do-icon'
+                  style={{ background: skill.color }}
+                >
+                  {skill.icon}
+                </div>
+                <div className='what-i-do-content'>
+                  <h3>{skill.title}</h3>
+                  <p>{skill.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Portfolio Section */}
-      <section className='portfolio-preview'>
-        <h2>My Portfolio</h2>
-        <div className='portfolio-cards'>
-          <div className='portfolio-card'>
-            <img src='/src/assets/portfolio ui.jpg' alt='Portfolio 1' />
-            <div className='portfolio-title'>
-              The services provide for design
-            </div>
-          </div>
-          <div className='portfolio-card'>
-            <img src='/src/assets/portfolio ui.jpg' alt='Portfolio 2' />
-            <div className='portfolio-title'>
-              Mobile app landing design & app maintain
-            </div>
-          </div>
-          <div className='portfolio-card'>
-            <img src='/src/assets/portfolio ui.jpg' alt='Portfolio 3' />
-            <div className='portfolio-title'>
-              Logo design creativity & Application
-            </div>
-          </div>
-          <div className='portfolio-card'>
-            <img src='/src/assets/portfolio ui.jpg' alt='Portfolio 4' />
-            <div className='portfolio-title'>
-              Design for technology & services
-            </div>
-          </div>
-          <div className='portfolio-card'>
-            <img src='/src/assets/portfolio ui.jpg' alt='Portfolio 5' />
-            <div className='portfolio-title'>App for technology & services</div>
-          </div>
-        </div>
-      </section>
+      <Portfolio />
 
       {/* Resume Section */}
-      <section className='resume-preview'>
-        <h2>My Resume</h2>
-        <div className='resume-tabs'>
-          <button className='resume-tab active'>Education</button>
-          <button className='resume-tab'>Professional Skills</button>
-          <button className='resume-tab'>Experience</button>
-          <button className='resume-tab'>Interview</button>
-        </div>
-        <div className='resume-cards'>
-          <div className='resume-card'>
-            <div className='resume-card-title'>Education Quality</div>
-            <div className='resume-card-desc'>
-              Personal Portfolio App | Fools
-              <br />
-              The education quality is top-notch and tailored for tech
-              professionals.
-            </div>
-          </div>
-          <div className='resume-card'>
-            <div className='resume-card-title'>Job Experience</div>
-            <div className='resume-card-desc'>
-              Diploma in Web Development
-              <br />
-              Worked on multiple web projects and delivered high-quality
-              results.
-            </div>
-          </div>
-        </div>
-      </section>
+      <ResumeSection />
     </div>
   );
 };
